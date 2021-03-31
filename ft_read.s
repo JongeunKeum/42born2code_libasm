@@ -1,9 +1,17 @@
 section .text
 	global _ft_read
+	extern ___error
 
 _ft_read:
-	sub rsp, 64
-	mov rdi, 0
-	mov rsi, rsp
-	mov rdx, 63
+	mov rax, 0x2000003
 	syscall
+	jc set_error
+	ret
+
+set_error:
+	push rax
+	call ___error
+	pop rdx
+	mov [rax], rdx
+	mov rax, -1
+	ret
