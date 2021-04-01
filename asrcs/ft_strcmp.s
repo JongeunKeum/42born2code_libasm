@@ -2,18 +2,18 @@ section .text
 	global _ft_strcmp
 
 _ft_strcmp:
-	mov	rax, 0 
+	mov	rax, -1 
 	xor	rbx, rbx
 	xor	rcx, rcx
 	jmp	loop
 
 loop:
+	inc	rax
 	cmp	Byte[rdi + rax], 0
 	je	chk_s2
 	mov	bl, Byte[rdi + rax]
 	mov	cl, Byte[rsi + rax]
 	cmp	bl, cl
-	inc	rax
 	je	loop
 	sub	rbx, rcx
 	mov	rax, rbx
