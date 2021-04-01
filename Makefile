@@ -15,13 +15,12 @@ ARFLAGS = rc
 RM = rm -f
 
 INC = ./includes 
-SRCS = main.c
-ASRCS = ft_read.s \
-		ft_write.s \
-	#	ft_strlen.s \
-	#	ft_strcmp.s \
-	#	ft_strcpy.s \
-	#	ft_strdup.s
+ASRCS = ./asrcs/ft_read.s \
+		./asrcs/ft_write.s \
+		./asrcs/ft_strlen.s \
+		./asrcs/ft_strcmp.s \
+		./asrcs/ft_strcpy.s \
+		./asrcs/ft_strdup.s
 OBJS = $(ASRCS:.s=.o)
 
 all : $(NAME)
@@ -34,7 +33,7 @@ $(NAME) : $(OBJS)
 	$(ASM) $(ASFLAGS) -o $@ $^
 
 test : all
-	$(CC) $(CFLAGS) -o $(TEST) $(SRCS) -I$(INC) -L. -lasm
+	$(CC) $(CFLAGS) -o $(TEST) main.c -I$(INC) -L. -lasm
 	./$(TEST)
 
 clean :
