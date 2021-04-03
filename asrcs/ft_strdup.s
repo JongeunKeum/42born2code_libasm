@@ -10,10 +10,15 @@ _ft_strdup:
 	inc		rax
 	mov		rdi, rax
 	call	_malloc
+;	cmp		rax, 0
+;	je		guard
 	mov		rdi, rax
 	pop		rsi
 	call	_ft_strcpy
 	ret
+
+;guard:
+;	ret
 
 ;char	*ft_strdup(const char *s1)
 ;{
